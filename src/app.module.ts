@@ -1,10 +1,20 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { DatabaseModule } from './database/database.module';
+import { ConfigModule } from '@nestjs/config';
+import { BankAccountModule } from './bank-account/bank-account.module';
+import { PixKeyAccountModule } from './pix-keys/pix-keys.module';
+import { ConsoleModule } from 'nestjs-console';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    ConsoleModule,
+    DatabaseModule,
+    BankAccountModule,
+    PixKeyAccountModule,
+  ],
+
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
